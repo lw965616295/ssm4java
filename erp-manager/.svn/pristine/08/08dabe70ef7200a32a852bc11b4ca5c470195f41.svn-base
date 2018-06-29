@@ -1,0 +1,33 @@
+package com.ruishun.mapper.base;
+
+import java.util.List;
+
+import com.ruishun.pojo.base.VErpLogin;
+
+/**
+ * <p>Title: VLoginMapper</p>
+ * <p>Description: 用于根据用户查询菜单</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2018年1月2日
+ */
+public interface VErpLoginMapper {
+    /**
+     * 查询数据库获取一级菜单
+     * @return 一级菜单
+     */
+    List<VErpLogin> getMenu1(String appId, String userNo);
+    /**
+     * 查询数据库获取二级菜单
+     * @param menu1 传入一级菜单id
+     * @return 一级菜单对应的二级菜单
+     */
+    List<VErpLogin> getMenu2(String appId, Integer menu1, String userNo);
+    /**
+     * 查询数据库获取三级菜单
+     * @param menu1 传入一级菜单id
+     * @param menu2 传入二级菜单id
+     * @return 对应的三级菜单
+     */
+    List<VErpLogin> getMenu3(String appId, Integer menu1, Integer menu2, String userNo);
+}

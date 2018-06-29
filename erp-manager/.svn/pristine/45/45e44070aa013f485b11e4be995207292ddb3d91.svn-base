@@ -1,0 +1,49 @@
+package com.ruishun.mapper.base;
+
+import com.ruishun.pojo.base.ErpMenu;
+import com.ruishun.pojo.base.ErpMenuExample;
+import com.ruishun.pojo.base.ErpMenuKey;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface ErpMenuMapper {
+    int countByExample(ErpMenuExample example);
+
+    int deleteByExample(ErpMenuExample example);
+
+    int deleteByPrimaryKey(ErpMenuKey key);
+
+    int insert(ErpMenu record);
+
+    int insertSelective(ErpMenu record);
+
+    List<ErpMenu> selectByExample(ErpMenuExample example);
+
+    ErpMenu selectByPrimaryKey(ErpMenuKey key);
+
+    int updateByExampleSelective(@Param("record") ErpMenu record, @Param("example") ErpMenuExample example);
+
+    int updateByExample(@Param("record") ErpMenu record, @Param("example") ErpMenuExample example);
+
+    int updateByPrimaryKeySelective(ErpMenu record);
+
+    int updateByPrimaryKey(ErpMenu record);
+    /**
+     * 查询数据库获取一级菜单
+     * @return 一级菜单
+     */
+    List<ErpMenu> getMenu1(String appId);
+    /**
+     * 查询数据库获取二级菜单
+     * @param menu1 传入一级菜单id
+     * @return 一级菜单对应的二级菜单
+     */
+    List<ErpMenu> getMenu2(String appId, Integer menu1);
+    /**
+     * 查询数据库获取三级菜单
+     * @param menu1 传入一级菜单id
+     * @param menu2 传入二级菜单id
+     * @return 对应的三级菜单
+     */
+    List<ErpMenu> getMenu3(String appId, Integer menu1, Integer menu2);
+}

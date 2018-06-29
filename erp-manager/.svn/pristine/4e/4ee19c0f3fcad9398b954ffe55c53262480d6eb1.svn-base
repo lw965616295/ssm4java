@@ -1,0 +1,175 @@
+package com.ruishun.pojo.base;
+
+import java.util.Date;
+
+public class ErpUser {
+    private String userNo;
+
+    private String userName;
+
+    private String userPwd;
+
+    private String workerRfid;
+
+    private String grpNo;
+
+    private Integer sex;
+
+    private String tel;
+
+    private String address;
+
+    private Integer status;
+
+    private String memo;
+
+    private String colname01;
+
+    private String colname02;
+
+    private String colname03;
+
+    private String createName;
+
+    private Date createDate;
+
+    private String updtName;
+
+    private Date updtDate;
+
+    public String getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(String userNo) {
+        this.userNo = userNo == null ? null : userNo.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getUserPwd() {
+        return userPwd;
+    }
+
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd == null ? null : userPwd.trim();
+    }
+
+    public String getWorkerRfid() {
+        return workerRfid;
+    }
+
+    public void setWorkerRfid(String workerRfid) {
+        this.workerRfid = workerRfid == null ? null : workerRfid.trim();
+    }
+
+    public String getGrpNo() {
+        return grpNo;
+    }
+
+    public void setGrpNo(String grpNo) {
+        this.grpNo = grpNo == null ? null : grpNo.trim();
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo == null ? null : memo.trim();
+    }
+
+    public String getColname01() {
+        return colname01;
+    }
+
+    public void setColname01(String colname01) {
+        this.colname01 = colname01 == null ? null : colname01.trim();
+    }
+
+    public String getColname02() {
+        return colname02;
+    }
+
+    public void setColname02(String colname02) {
+        this.colname02 = colname02 == null ? null : colname02.trim();
+    }
+
+    public String getColname03() {
+        return colname03;
+    }
+
+    public void setColname03(String colname03) {
+        this.colname03 = colname03 == null ? null : colname03.trim();
+    }
+
+    public String getCreateName() {
+        return createName;
+    }
+
+    public void setCreateName(String createName) {
+        this.createName = createName == null ? null : createName.trim();
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdtName() {
+        return updtName;
+    }
+
+    public void setUpdtName(String updtName) {
+        this.updtName = updtName == null ? null : updtName.trim();
+    }
+
+    public Date getUpdtDate() {
+        return updtDate;
+    }
+
+    public void setUpdtDate(Date updtDate) {
+        this.updtDate = updtDate;
+    }
+}

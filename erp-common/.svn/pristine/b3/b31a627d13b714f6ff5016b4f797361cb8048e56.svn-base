@@ -1,0 +1,27 @@
+package com.ruishun.common;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class DataGridResult implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private Long Total;
+	private List rows;
+
+	public Long getTotal() {
+		return Total;
+	}
+
+	public void setTotal(Long total) {
+		Total = total;
+	}
+
+	public List getRows() {
+		return rows;
+	}
+
+	public void setRows(List rows) {
+		this.rows = rows;
+	}
+
+}

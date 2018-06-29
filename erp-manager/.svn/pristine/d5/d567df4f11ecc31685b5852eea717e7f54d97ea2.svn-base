@@ -1,0 +1,88 @@
+package com.ruishun.controller.authority;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ruishun.common.DataGridResult;
+import com.ruishun.service.base.ErpUserService;
+
+/**
+ * <p>Title: UserManage</p>
+ * <p>Description: 用户管理</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2018年1月4日
+ */
+@Controller
+@RequestMapping("authority/userManage")
+public class UserManageController {
+	@Autowired
+	private ErpUserService erpUserService;
+	// 默认第一页
+	private Integer page = 1;
+	// 默认一页显示20行
+	private Integer rows = 20;
+
+	/**
+	 * 
+	 * <p>Title: userInfo</p>
+	 * <p>Description: 用户信息列表</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userInfo")
+	public String userInfo() {
+		return "/authority/user-list";
+	}
+
+	/**
+	 * 
+	 * <p>Title: userAdd</p>
+	 * <p>Description: 添加用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userAdd")
+	public String userAdd() {
+		return "/authority/user-add";
+	}
+
+	/**
+	 * 
+	 * <p>Title: userChangePwd</p>
+	 * <p>Description: 修改密码</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userChangePwd")
+	public String userChangePwd() {
+		return "/authority/user-change-pwd";
+	}
+
+	/**
+	 * 
+	 * <p>Title: getUserList</p>
+	 * <p>Description: 分页查询结果集对象</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月5日
+	 * @param page
+	 * @param rows
+	 * @return 查询结果集json对象
+	 */
+	@RequestMapping("getUserList")
+	@ResponseBody
+	public DataGridResult getUserList(Integer page, Integer rows) {
+		System.out.println(page + "::" + rows);
+		DataGridResult userList = erpUserService.getUserList(page, rows);
+		return userList;
+	}
+}

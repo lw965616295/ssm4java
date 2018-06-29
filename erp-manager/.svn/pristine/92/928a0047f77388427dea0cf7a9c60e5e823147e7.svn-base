@@ -1,0 +1,33 @@
+package com.ruishun.service.base;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.ruishun.pojo.base.ErpMenu;
+
+public interface ErpMenuService {
+    /**
+     * 查询数据库获取一级菜单
+     * @return 一级菜单
+     */
+	public List<ErpMenu> getMenu1();
+	/**
+     * 查询数据库获取二级菜单
+     * @param menu1 传入一级菜单id
+     * @return 一级菜单对应的二级菜单
+     */
+	public List<ErpMenu> getMenu2(Integer menu1); 
+    /**
+     * 查询数据库获取三级菜单
+     * @param menu1 传入一级菜单id
+     * @param menu2 传入二级菜单id
+     * @return 对应的三级菜单
+     */
+	public List<ErpMenu> getMenu3(Integer menu1, Integer menu2); 
+    /**
+     * 获取所有菜单集合
+     * @return 所有菜单
+     */
+	public HashMap<String, Object>getMenu();
+
+}

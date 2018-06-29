@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruishun.mapper.base.ErpMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ruishun.pojo.base.ErpMenu" >
+    <id column="MENU_NO" property="menuNo" jdbcType="VARCHAR" />
+    <id column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="MENU_LEVEL1" property="menuLevel1" jdbcType="DECIMAL" />
+    <result column="MENU_LEVEL2" property="menuLevel2" jdbcType="DECIMAL" />
+    <result column="MENU_LEVEL3" property="menuLevel3" jdbcType="DECIMAL" />
+    <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="URL_ADDR" property="urlAddr" jdbcType="VARCHAR" />
+    <result column="COLNAME01" property="colname01" jdbcType="VARCHAR" />
+    <result column="COLNAME02" property="colname02" jdbcType="VARCHAR" />
+    <result column="COLNAME03" property="colname03" jdbcType="VARCHAR" />
+    <result column="COLNAME04" property="colname04" jdbcType="VARCHAR" />
+    <result column="COLNAME05" property="colname05" jdbcType="VARCHAR" />
+    <result column="COLNAME06" property="colname06" jdbcType="VARCHAR" />
+    <result column="COLNAME07" property="colname07" jdbcType="VARCHAR" />
+    <result column="COLNAME08" property="colname08" jdbcType="VARCHAR" />
+    <result column="COLNAME09" property="colname09" jdbcType="VARCHAR" />
+    <result column="COLNAME10" property="colname10" jdbcType="VARCHAR" />
+    <result column="COLNAME11" property="colname11" jdbcType="VARCHAR" />
+    <result column="COLNAME12" property="colname12" jdbcType="VARCHAR" />
+    <result column="COLNAME13" property="colname13" jdbcType="VARCHAR" />
+    <result column="COLNAME14" property="colname14" jdbcType="VARCHAR" />
+    <result column="COLNAME15" property="colname15" jdbcType="VARCHAR" />
+    <result column="CREATE_NAME" property="createName" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDT_NAME" property="updtName" jdbcType="VARCHAR" />
+    <result column="UPDT_DATE" property="updtDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MENU_NO, APP_ID, MENU_LEVEL1, MENU_LEVEL2, MENU_LEVEL3, MENU_NAME, STATUS, URL_ADDR, 
+    COLNAME01, COLNAME02, COLNAME03, COLNAME04, COLNAME05, COLNAME06, COLNAME07, COLNAME08, 
+    COLNAME09, COLNAME10, COLNAME11, COLNAME12, COLNAME13, COLNAME14, COLNAME15, CREATE_NAME, 
+    CREATE_DATE, UPDT_NAME, UPDT_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ruishun.pojo.base.ErpMenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ERP_MENU
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ruishun.pojo.base.ErpMenuKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from ERP_MENU
+    where MENU_NO = #{menuNo,jdbcType=VARCHAR}
+      and APP_ID = #{appId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ruishun.pojo.base.ErpMenuKey" >
+    delete from ERP_MENU
+    where MENU_NO = #{menuNo,jdbcType=VARCHAR}
+      and APP_ID = #{appId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ruishun.pojo.base.ErpMenuExample" >
+    delete from ERP_MENU
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ruishun.pojo.base.ErpMenu" >
+    insert into ERP_MENU (MENU_NO, APP_ID, MENU_LEVEL1, 
+      MENU_LEVEL2, MENU_LEVEL3, MENU_NAME, 
+      STATUS, URL_ADDR, COLNAME01, 
+      COLNAME02, COLNAME03, COLNAME04, 
+      COLNAME05, COLNAME06, COLNAME07, 
+      COLNAME08, COLNAME09, COLNAME10, 
+      COLNAME11, COLNAME12, COLNAME13, 
+      COLNAME14, COLNAME15, CREATE_NAME, 
+      CREATE_DATE, UPDT_NAME, UPDT_DATE
+      )
+    values (#{menuNo,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{menuLevel1,jdbcType=DECIMAL}, 
+      #{menuLevel2,jdbcType=DECIMAL}, #{menuLevel3,jdbcType=DECIMAL}, #{menuName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL}, #{urlAddr,jdbcType=VARCHAR}, #{colname01,jdbcType=VARCHAR}, 
+      #{colname02,jdbcType=VARCHAR}, #{colname03,jdbcType=VARCHAR}, #{colname04,jdbcType=VARCHAR}, 
+      #{colname05,jdbcType=VARCHAR}, #{colname06,jdbcType=VARCHAR}, #{colname07,jdbcType=VARCHAR}, 
+      #{colname08,jdbcType=VARCHAR}, #{colname09,jdbcType=VARCHAR}, #{colname10,jdbcType=VARCHAR}, 
+      #{colname11,jdbcType=VARCHAR}, #{colname12,jdbcType=VARCHAR}, #{colname13,jdbcType=VARCHAR}, 
+      #{colname14,jdbcType=VARCHAR}, #{colname15,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{updtName,jdbcType=VARCHAR}, #{updtDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruishun.pojo.base.ErpMenu" >
+    insert into ERP_MENU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuNo != null" >
+        MENU_NO,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="menuLevel1 != null" >
+        MENU_LEVEL1,
+      </if>
+      <if test="menuLevel2 != null" >
+        MENU_LEVEL2,
+      </if>
+      <if test="menuLevel3 != null" >
+        MENU_LEVEL3,
+      </if>
+      <if test="menuName != null" >
+        MENU_NAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="urlAddr != null" >
+        URL_ADDR,
+      </if>
+      <if test="colname01 != null" >
+        COLNAME01,
+      </if>
+      <if test="colname02 != null" >
+        COLNAME02,
+      </if>
+      <if test="colname03 != null" >
+        COLNAME03,
+      </if>
+      <if test="colname04 != null" >
+        COLNAME04,
+      </if>
+      <if test="colname05 != null" >
+        COLNAME05,
+      </if>
+      <if test="colname06 != null" >
+        COLNAME06,
+      </if>
+      <if test="colname07 != null" >
+        COLNAME07,
+      </if>
+      <if test="colname08 != null" >
+        COLNAME08,
+      </if>
+      <if test="colname09 != null" >
+        COLNAME09,
+      </if>
+      <if test="colname10 != null" >
+        COLNAME10,
+      </if>
+      <if test="colname11 != null" >
+        COLNAME11,
+      </if>
+      <if test="colname12 != null" >
+        COLNAME12,
+      </if>
+      <if test="colname13 != null" >
+        COLNAME13,
+      </if>
+      <if test="colname14 != null" >
+        COLNAME14,
+      </if>
+      <if test="colname15 != null" >
+        COLNAME15,
+      </if>
+      <if test="createName != null" >
+        CREATE_NAME,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updtName != null" >
+        UPDT_NAME,
+      </if>
+      <if test="updtDate != null" >
+        UPDT_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuNo != null" >
+        #{menuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevel1 != null" >
+        #{menuLevel1,jdbcType=DECIMAL},
+      </if>
+      <if test="menuLevel2 != null" >
+        #{menuLevel2,jdbcType=DECIMAL},
+      </if>
+      <if test="menuLevel3 != null" >
+        #{menuLevel3,jdbcType=DECIMAL},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="urlAddr != null" >
+        #{urlAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="colname01 != null" >
+        #{colname01,jdbcType=VARCHAR},
+      </if>
+      <if test="colname02 != null" >
+        #{colname02,jdbcType=VARCHAR},
+      </if>
+      <if test="colname03 != null" >
+        #{colname03,jdbcType=VARCHAR},
+      </if>
+      <if test="colname04 != null" >
+        #{colname04,jdbcType=VARCHAR},
+      </if>
+      <if test="colname05 != null" >
+        #{colname05,jdbcType=VARCHAR},
+      </if>
+      <if test="colname06 != null" >
+        #{colname06,jdbcType=VARCHAR},
+      </if>
+      <if test="colname07 != null" >
+        #{colname07,jdbcType=VARCHAR},
+      </if>
+      <if test="colname08 != null" >
+        #{colname08,jdbcType=VARCHAR},
+      </if>
+      <if test="colname09 != null" >
+        #{colname09,jdbcType=VARCHAR},
+      </if>
+      <if test="colname10 != null" >
+        #{colname10,jdbcType=VARCHAR},
+      </if>
+      <if test="colname11 != null" >
+        #{colname11,jdbcType=VARCHAR},
+      </if>
+      <if test="colname12 != null" >
+        #{colname12,jdbcType=VARCHAR},
+      </if>
+      <if test="colname13 != null" >
+        #{colname13,jdbcType=VARCHAR},
+      </if>
+      <if test="colname14 != null" >
+        #{colname14,jdbcType=VARCHAR},
+      </if>
+      <if test="colname15 != null" >
+        #{colname15,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updtName != null" >
+        #{updtName,jdbcType=VARCHAR},
+      </if>
+      <if test="updtDate != null" >
+        #{updtDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ruishun.pojo.base.ErpMenuExample" resultType="java.lang.Integer" >
+    select count(*) from ERP_MENU
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERP_MENU
+    <set >
+      <if test="record.menuNo != null" >
+        MENU_NO = #{record.menuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appId != null" >
+        APP_ID = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuLevel1 != null" >
+        MENU_LEVEL1 = #{record.menuLevel1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuLevel2 != null" >
+        MENU_LEVEL2 = #{record.menuLevel2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuLevel3 != null" >
+        MENU_LEVEL3 = #{record.menuLevel3,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuName != null" >
+        MENU_NAME = #{record.menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.urlAddr != null" >
+        URL_ADDR = #{record.urlAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname01 != null" >
+        COLNAME01 = #{record.colname01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname02 != null" >
+        COLNAME02 = #{record.colname02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname03 != null" >
+        COLNAME03 = #{record.colname03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname04 != null" >
+        COLNAME04 = #{record.colname04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname05 != null" >
+        COLNAME05 = #{record.colname05,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname06 != null" >
+        COLNAME06 = #{record.colname06,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname07 != null" >
+        COLNAME07 = #{record.colname07,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname08 != null" >
+        COLNAME08 = #{record.colname08,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname09 != null" >
+        COLNAME09 = #{record.colname09,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname10 != null" >
+        COLNAME10 = #{record.colname10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname11 != null" >
+        COLNAME11 = #{record.colname11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname12 != null" >
+        COLNAME12 = #{record.colname12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname13 != null" >
+        COLNAME13 = #{record.colname13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname14 != null" >
+        COLNAME14 = #{record.colname14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname15 != null" >
+        COLNAME15 = #{record.colname15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createName != null" >
+        CREATE_NAME = #{record.createName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updtName != null" >
+        UPDT_NAME = #{record.updtName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updtDate != null" >
+        UPDT_DATE = #{record.updtDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ERP_MENU
+    set MENU_NO = #{record.menuNo,jdbcType=VARCHAR},
+      APP_ID = #{record.appId,jdbcType=VARCHAR},
+      MENU_LEVEL1 = #{record.menuLevel1,jdbcType=DECIMAL},
+      MENU_LEVEL2 = #{record.menuLevel2,jdbcType=DECIMAL},
+      MENU_LEVEL3 = #{record.menuLevel3,jdbcType=DECIMAL},
+      MENU_NAME = #{record.menuName,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=DECIMAL},
+      URL_ADDR = #{record.urlAddr,jdbcType=VARCHAR},
+      COLNAME01 = #{record.colname01,jdbcType=VARCHAR},
+      COLNAME02 = #{record.colname02,jdbcType=VARCHAR},
+      COLNAME03 = #{record.colname03,jdbcType=VARCHAR},
+      COLNAME04 = #{record.colname04,jdbcType=VARCHAR},
+      COLNAME05 = #{record.colname05,jdbcType=VARCHAR},
+      COLNAME06 = #{record.colname06,jdbcType=VARCHAR},
+      COLNAME07 = #{record.colname07,jdbcType=VARCHAR},
+      COLNAME08 = #{record.colname08,jdbcType=VARCHAR},
+      COLNAME09 = #{record.colname09,jdbcType=VARCHAR},
+      COLNAME10 = #{record.colname10,jdbcType=VARCHAR},
+      COLNAME11 = #{record.colname11,jdbcType=VARCHAR},
+      COLNAME12 = #{record.colname12,jdbcType=VARCHAR},
+      COLNAME13 = #{record.colname13,jdbcType=VARCHAR},
+      COLNAME14 = #{record.colname14,jdbcType=VARCHAR},
+      COLNAME15 = #{record.colname15,jdbcType=VARCHAR},
+      CREATE_NAME = #{record.createName,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      UPDT_NAME = #{record.updtName,jdbcType=VARCHAR},
+      UPDT_DATE = #{record.updtDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruishun.pojo.base.ErpMenu" >
+    update ERP_MENU
+    <set >
+      <if test="menuLevel1 != null" >
+        MENU_LEVEL1 = #{menuLevel1,jdbcType=DECIMAL},
+      </if>
+      <if test="menuLevel2 != null" >
+        MENU_LEVEL2 = #{menuLevel2,jdbcType=DECIMAL},
+      </if>
+      <if test="menuLevel3 != null" >
+        MENU_LEVEL3 = #{menuLevel3,jdbcType=DECIMAL},
+      </if>
+      <if test="menuName != null" >
+        MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="urlAddr != null" >
+        URL_ADDR = #{urlAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="colname01 != null" >
+        COLNAME01 = #{colname01,jdbcType=VARCHAR},
+      </if>
+      <if test="colname02 != null" >
+        COLNAME02 = #{colname02,jdbcType=VARCHAR},
+      </if>
+      <if test="colname03 != null" >
+        COLNAME03 = #{colname03,jdbcType=VARCHAR},
+      </if>
+      <if test="colname04 != null" >
+        COLNAME04 = #{colname04,jdbcType=VARCHAR},
+      </if>
+      <if test="colname05 != null" >
+        COLNAME05 = #{colname05,jdbcType=VARCHAR},
+      </if>
+      <if test="colname06 != null" >
+        COLNAME06 = #{colname06,jdbcType=VARCHAR},
+      </if>
+      <if test="colname07 != null" >
+        COLNAME07 = #{colname07,jdbcType=VARCHAR},
+      </if>
+      <if test="colname08 != null" >
+        COLNAME08 = #{colname08,jdbcType=VARCHAR},
+      </if>
+      <if test="colname09 != null" >
+        COLNAME09 = #{colname09,jdbcType=VARCHAR},
+      </if>
+      <if test="colname10 != null" >
+        COLNAME10 = #{colname10,jdbcType=VARCHAR},
+      </if>
+      <if test="colname11 != null" >
+        COLNAME11 = #{colname11,jdbcType=VARCHAR},
+      </if>
+      <if test="colname12 != null" >
+        COLNAME12 = #{colname12,jdbcType=VARCHAR},
+      </if>
+      <if test="colname13 != null" >
+        COLNAME13 = #{colname13,jdbcType=VARCHAR},
+      </if>
+      <if test="colname14 != null" >
+        COLNAME14 = #{colname14,jdbcType=VARCHAR},
+      </if>
+      <if test="colname15 != null" >
+        COLNAME15 = #{colname15,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        CREATE_NAME = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updtName != null" >
+        UPDT_NAME = #{updtName,jdbcType=VARCHAR},
+      </if>
+      <if test="updtDate != null" >
+        UPDT_DATE = #{updtDate,jdbcType=DATE},
+      </if>
+    </set>
+    where MENU_NO = #{menuNo,jdbcType=VARCHAR}
+      and APP_ID = #{appId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruishun.pojo.base.ErpMenu" >
+    update ERP_MENU
+    set MENU_LEVEL1 = #{menuLevel1,jdbcType=DECIMAL},
+      MENU_LEVEL2 = #{menuLevel2,jdbcType=DECIMAL},
+      MENU_LEVEL3 = #{menuLevel3,jdbcType=DECIMAL},
+      MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      URL_ADDR = #{urlAddr,jdbcType=VARCHAR},
+      COLNAME01 = #{colname01,jdbcType=VARCHAR},
+      COLNAME02 = #{colname02,jdbcType=VARCHAR},
+      COLNAME03 = #{colname03,jdbcType=VARCHAR},
+      COLNAME04 = #{colname04,jdbcType=VARCHAR},
+      COLNAME05 = #{colname05,jdbcType=VARCHAR},
+      COLNAME06 = #{colname06,jdbcType=VARCHAR},
+      COLNAME07 = #{colname07,jdbcType=VARCHAR},
+      COLNAME08 = #{colname08,jdbcType=VARCHAR},
+      COLNAME09 = #{colname09,jdbcType=VARCHAR},
+      COLNAME10 = #{colname10,jdbcType=VARCHAR},
+      COLNAME11 = #{colname11,jdbcType=VARCHAR},
+      COLNAME12 = #{colname12,jdbcType=VARCHAR},
+      COLNAME13 = #{colname13,jdbcType=VARCHAR},
+      COLNAME14 = #{colname14,jdbcType=VARCHAR},
+      COLNAME15 = #{colname15,jdbcType=VARCHAR},
+      CREATE_NAME = #{createName,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      UPDT_NAME = #{updtName,jdbcType=VARCHAR},
+      UPDT_DATE = #{updtDate,jdbcType=DATE}
+    where MENU_NO = #{menuNo,jdbcType=VARCHAR}
+      and APP_ID = #{appId,jdbcType=VARCHAR}
+  </update>
+  <select id="getMenu1" resultMap="BaseResultMap">
+  	select 
+  	 distinct 
+    <include refid="Base_Column_List" />
+    from ERP_MENU
+    where  MENU_LEVEL2=0 AND MENU_LEVEL3=0
+    order by MENU_NO
+  </select>
+  <select id="getMenu2" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+  	 distinct 
+    <include refid="Base_Column_List" />
+    from ERP_MENU
+    where MENU_LEVEL1=#{menu1} AND MENU_LEVEL2<![CDATA[<>]]>0 AND MENU_LEVEL3=0
+    order by MENU_NO
+  </select>
+  <select id="getMenu3" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+  	 distinct 
+    <include refid="Base_Column_List" />
+    from ERP_MENU
+    where MENU_LEVEL1=#{0} AND MENU_LEVEL2=#{1} AND MENU_LEVEL3<![CDATA[<>]]>0
+    order by MENU_NO
+  </select>
+</mapper>

@@ -1,0 +1,144 @@
+package com.ruishun.controller.authority;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ruishun.common.CamelChange;
+import com.ruishun.common.DataGridResult;
+import com.ruishun.pojo.base.ErpUser;
+import com.ruishun.pojo.base.ErpUserQuery;
+import com.ruishun.service.base.ErpUserService;
+
+/**
+ * <p>Title: UserManage</p>
+ * <p>Description: 用户管理</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2018年1月4日
+ */
+@Controller
+@RequestMapping("authority/userManage")
+public class UserManageController {
+	@Autowired
+	private ErpUserService erpUserService;
+
+	/**
+	 * 
+	 * <p>Title: userInfo</p>
+	 * <p>Description: 用户信息列表</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userInfo")
+	public String userInfo() {
+		return "/authority/user-list";
+	}
+
+	/**
+	 * 
+	 * <p>Title: userAdd</p>
+	 * <p>Description: 添加用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userAdd")
+	public String userAdd() {
+		return "/authority/user-add";
+	}
+
+	/**
+	 * 
+	 * <p>Title: userChangePwd</p>
+	 * <p>Description: 修改密码</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userChangePwd")
+	public String userChangePwd() {
+		return "/authority/user-change-pwd";
+	}
+
+	/**
+	 * 
+	 * <p>Title: userUpdate</p>
+	 * <p>Description: 更新用戶信息</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月6日
+	 * @return
+	 */
+	public String userUpdate() {
+		return "/authority/user-update";
+	}
+
+	/**
+	 * 
+	 * <p>Title: getUserList</p>
+	 * <p>Description: 分页查询结果集对象</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月5日
+	 * @param page
+	 * @param rows
+	 * @return 查询结果集json对象
+	 */
+	@RequestMapping("getUserList")
+	@ResponseBody
+	public DataGridResult getUserList(HttpServletRequest request,Integer start, Integer length) {
+		String orderColumnId = request.getParameter("order[0][column]");
+		String orderName = request.getParameter("columns["+orderColumnId+"][data]");
+		String orderBy = request.getParameter("order[0][dir]");
+		ErpUserQuery query = new ErpUserQuery();
+		query.setPage(start/length+1);
+		query.setRows(length);
+		query.setOrderBy(orderBy);
+		query.setOrderName(CamelChange.camelToUnderline2(orderName));
+		DataGridResult result = erpUserService.getUserList(query);
+		return result;
+	}
+
+	/**
+	 * 
+	 * <p>Title: addUser</p>
+	 * <p>Description: 添加用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月6日
+	 * @param erpUser
+	 * @return
+	 */
+	@RequestMapping("addUser")
+	@ResponseBody
+	public String addUser(@RequestBody ErpUser erpUser) {
+		String resultStr = erpUserService.addUser(erpUser);
+		return resultStr;
+	}
+
+	/**
+	 * 
+	 * <p>Title: updateUser</p>
+	 * <p>Description: 更新用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月6日
+	 * @param erpUser
+	 * @return
+	 */
+	@RequestMapping("updateUser")
+	@ResponseBody
+	public String updateUser(@RequestBody ErpUser erpUser) {
+		String resultStr = erpUserService.updateUser(erpUser);
+		return resultStr;
+	}
+}

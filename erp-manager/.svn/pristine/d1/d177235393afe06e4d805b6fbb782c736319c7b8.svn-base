@@ -1,0 +1,275 @@
+package com.ruishun.pojo.base;
+
+import java.util.Date;
+
+public class ErpMenu {
+    private String funNo;
+
+    private String appId;
+
+    private Integer funLevel1;
+
+    private Integer funLevel2;
+
+    private Integer funLevel3;
+
+    private String funName;
+
+    private Integer status;
+
+    private String urlAddr;
+
+    private String colname01;
+
+    private String colname02;
+
+    private String colname03;
+
+    private String colname04;
+
+    private String colname05;
+
+    private String colname06;
+
+    private String colname07;
+
+    private String colname08;
+
+    private String colname09;
+
+    private String colname10;
+
+    private String colname11;
+
+    private String colname12;
+
+    private String colname13;
+
+    private String colname14;
+
+    private String colname15;
+
+    private String createName;
+
+    private Date createDate;
+
+    private String updtName;
+
+    private Date updtDate;
+
+    public String getFunNo() {
+        return funNo;
+    }
+
+    public void setFunNo(String funNo) {
+        this.funNo = funNo == null ? null : funNo.trim();
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId == null ? null : appId.trim();
+    }
+
+    public Integer getFunLevel1() {
+        return funLevel1;
+    }
+
+    public void setFunLevel1(Integer funLevel1) {
+        this.funLevel1 = funLevel1;
+    }
+
+    public Integer getFunLevel2() {
+        return funLevel2;
+    }
+
+    public void setFunLevel2(Integer funLevel2) {
+        this.funLevel2 = funLevel2;
+    }
+
+    public Integer getFunLevel3() {
+        return funLevel3;
+    }
+
+    public void setFunLevel3(Integer funLevel3) {
+        this.funLevel3 = funLevel3;
+    }
+
+    public String getFunName() {
+        return funName;
+    }
+
+    public void setFunName(String funName) {
+        this.funName = funName == null ? null : funName.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getUrlAddr() {
+        return urlAddr;
+    }
+
+    public void setUrlAddr(String urlAddr) {
+        this.urlAddr = urlAddr == null ? null : urlAddr.trim();
+    }
+
+    public String getColname01() {
+        return colname01;
+    }
+
+    public void setColname01(String colname01) {
+        this.colname01 = colname01 == null ? null : colname01.trim();
+    }
+
+    public String getColname02() {
+        return colname02;
+    }
+
+    public void setColname02(String colname02) {
+        this.colname02 = colname02 == null ? null : colname02.trim();
+    }
+
+    public String getColname03() {
+        return colname03;
+    }
+
+    public void setColname03(String colname03) {
+        this.colname03 = colname03 == null ? null : colname03.trim();
+    }
+
+    public String getColname04() {
+        return colname04;
+    }
+
+    public void setColname04(String colname04) {
+        this.colname04 = colname04 == null ? null : colname04.trim();
+    }
+
+    public String getColname05() {
+        return colname05;
+    }
+
+    public void setColname05(String colname05) {
+        this.colname05 = colname05 == null ? null : colname05.trim();
+    }
+
+    public String getColname06() {
+        return colname06;
+    }
+
+    public void setColname06(String colname06) {
+        this.colname06 = colname06 == null ? null : colname06.trim();
+    }
+
+    public String getColname07() {
+        return colname07;
+    }
+
+    public void setColname07(String colname07) {
+        this.colname07 = colname07 == null ? null : colname07.trim();
+    }
+
+    public String getColname08() {
+        return colname08;
+    }
+
+    public void setColname08(String colname08) {
+        this.colname08 = colname08 == null ? null : colname08.trim();
+    }
+
+    public String getColname09() {
+        return colname09;
+    }
+
+    public void setColname09(String colname09) {
+        this.colname09 = colname09 == null ? null : colname09.trim();
+    }
+
+    public String getColname10() {
+        return colname10;
+    }
+
+    public void setColname10(String colname10) {
+        this.colname10 = colname10 == null ? null : colname10.trim();
+    }
+
+    public String getColname11() {
+        return colname11;
+    }
+
+    public void setColname11(String colname11) {
+        this.colname11 = colname11 == null ? null : colname11.trim();
+    }
+
+    public String getColname12() {
+        return colname12;
+    }
+
+    public void setColname12(String colname12) {
+        this.colname12 = colname12 == null ? null : colname12.trim();
+    }
+
+    public String getColname13() {
+        return colname13;
+    }
+
+    public void setColname13(String colname13) {
+        this.colname13 = colname13 == null ? null : colname13.trim();
+    }
+
+    public String getColname14() {
+        return colname14;
+    }
+
+    public void setColname14(String colname14) {
+        this.colname14 = colname14 == null ? null : colname14.trim();
+    }
+
+    public String getColname15() {
+        return colname15;
+    }
+
+    public void setColname15(String colname15) {
+        this.colname15 = colname15 == null ? null : colname15.trim();
+    }
+
+    public String getCreateName() {
+        return createName;
+    }
+
+    public void setCreateName(String createName) {
+        this.createName = createName == null ? null : createName.trim();
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdtName() {
+        return updtName;
+    }
+
+    public void setUpdtName(String updtName) {
+        this.updtName = updtName == null ? null : updtName.trim();
+    }
+
+    public Date getUpdtDate() {
+        return updtDate;
+    }
+
+    public void setUpdtDate(Date updtDate) {
+        this.updtDate = updtDate;
+    }
+}

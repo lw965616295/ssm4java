@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* 你自己的样式 */
+.menu2{
+	margin-left:30px;
+}

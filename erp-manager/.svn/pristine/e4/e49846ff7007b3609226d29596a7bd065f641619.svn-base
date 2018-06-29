@@ -1,0 +1,29 @@
+package com.ruishun.controller.in;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * <p>Title: Book</p>
+ * <p>Description: 约仓管理</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2018年1月4日
+ */
+@Controller
+@RequestMapping("wms/in/bookWare/")
+public class BookWare {
+	/**
+	 * 
+	 * <p>Title: bookWare</p>
+	 * <p>Description: 约仓</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("wareReg")
+	public String wareReg() {
+		return "/in/wareReg";
+	}
+}

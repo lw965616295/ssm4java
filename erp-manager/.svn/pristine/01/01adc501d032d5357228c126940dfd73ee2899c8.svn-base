@@ -1,0 +1,42 @@
+package com.ruishun.controller.base;
+
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ruishun.service.base.ErpMenuService;
+
+/**
+ * <p>Title: MenuController菜单功能</p>
+ * <p>Description: 菜单操作</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2017年12月28日
+ */
+@Controller
+public class MenuController {
+	@Autowired
+	private ErpMenuService erpMenuService;
+	/**
+	 * <p>Title: getMenus获取所有菜单</p>
+	 * <p>Description: </p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2017年12月28日
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/getMenus")
+	public String getMenus(HttpServletRequest request, HttpServletResponse response) {
+		HashMap<String, Object> menu = erpMenuService.getMenu();
+		request.getSession().setAttribute("menus", menu);
+		System.out.println("zzz");
+		return "test";
+	}
+}

@@ -1,0 +1,23 @@
+package com.ruishun.pojo.base;
+
+public class ErpMenuKey {
+    private String menuNo;
+
+    private String appId;
+
+    public String getMenuNo() {
+        return menuNo;
+    }
+
+    public void setMenuNo(String menuNo) {
+        this.menuNo = menuNo == null ? null : menuNo.trim();
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId == null ? null : appId.trim();
+    }
+}

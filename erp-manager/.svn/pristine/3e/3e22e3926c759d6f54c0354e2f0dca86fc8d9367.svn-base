@@ -1,0 +1,29 @@
+package com.ruishun.controller.authority;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * <p>Title: UserManage</p>
+ * <p>Description: 用户管理</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2018年1月4日
+ */
+@Controller
+@RequestMapping("authority/userManage")
+public class UserManage {
+	/**
+	 * 
+	 * <p>Title: userInfo</p>
+	 * <p>Description: 用户信息列表</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月4日
+	 * @return
+	 */
+	@RequestMapping("userInfo")
+	public String userInfo() {
+		return "/authority/userList";
+	}
+}

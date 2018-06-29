@@ -1,0 +1,78 @@
+package com.ruishun.service.impl.base;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ruishun.mapper.base.ErpMenuMapper;
+import com.ruishun.mapper.base.VErpLoginMapper;
+import com.ruishun.pojo.base.ErpMenu;
+import com.ruishun.pojo.base.VErpLogin;
+import com.ruishun.service.base.ErpMenuService;
+@Service
+public class ErpMenuServiceImpl implements ErpMenuService {
+
+	@Autowired
+	private ErpMenuMapper erpMenuMapper;
+	@Autowired
+	private VErpLoginMapper vErpLoginMapper;
+
+	public List<ErpMenu> getMenu1() {
+		
+		return erpMenuMapper.getMenu1();
+	}
+	
+	public List<ErpMenu> getMenu2(Integer menu1) {
+		
+		return erpMenuMapper.getMenu2(menu1);
+	}
+
+	public List<ErpMenu> getMenu3(Integer menu1, Integer menu2) {
+		return erpMenuMapper.getMenu3(menu1, menu2);
+	}
+
+	public HashMap<String, Object> getMenu() {
+		//用于存所有一级菜单
+		HashMap<String, Object> menuMap1 = new HashMap<String, Object>();
+		//获取一级菜单集合对象
+		List<ErpMenu> list1 = getMenu1();
+		for (ErpMenu erpMenu1 : list1) {
+			//用于存所有二级菜单map集合
+			HashMap<String, Object> menuMap2 = new HashMap<String, Object>();
+			//获取对应一级菜单下的所有二级菜单集合对象
+			List<ErpMenu> list2 = getMenu2(erpMenu1.getMenuLevel1());
+			for (ErpMenu erpMenu2 : list2) {
+				//获取对应一级和二级菜单下的所有三级菜单集合对象
+				List<ErpMenu> list3 = getMenu3(erpMenu1.getMenuLevel1(), erpMenu2.getMenuLevel2());
+				
+				menuMap2.put(erpMenu2.getMenuName(), list3);
+			}
+			menuMap1.put(erpMenu1.getMenuName(), menuMap2);
+		}
+		return menuMap1;
+	}
+
+	@Override
+	public HashMap<String, Object> getMenuFromUser(String userNo) {
+		//用于存所有一级菜单
+		HashMap<String, Object> menuMap1 = new HashMap<String, Object>();
+		//获取一级菜单集合对象
+		List<VErpLogin> list1 = vErpLoginMapper.getMenu1(userNo);
+		for (VErpLogin erpMenu1 : list1) {
+			//用于存所有二级菜单map集合
+			HashMap<String, Object> menuMap2 = new HashMap<String, Object>();
+			//获取对应一级菜单下的所有二级菜单集合对象
+			List<VErpLogin> list2 = vErpLoginMapper.getMenu2(erpMenu1.getMenuLevel1(), userNo);
+			for (VErpLogin erpMenu2 : list2) {
+				//获取对应一级和二级菜单下的所有三级菜单集合对象
+				List<VErpLogin> list3 = vErpLoginMapper.getMenu3(erpMenu1.getMenuLevel1(), erpMenu2.getMenuLevel2(), userNo);
+				menuMap2.put(erpMenu2.getMenuName(), list3);
+			}
+			menuMap1.put(erpMenu1.getMenuName(), menuMap2);
+		}
+		return menuMap1;
+	}
+
+}

@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+package com.ruishun.pojo.base;
+
+/**
+ * <p>Title: ErpUserQuery</p>
+ * <p>Description: 查询条件</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2018年1月8日
+ */
+public class ErpUserQuery extends ErpUser{
+	private Integer page;
+	private Integer rows;
+	private String orderBy;
+	private String orderName;
+	
+	public String getOrderName() {
+		return orderName;
+	}
+	public void setOrderName(String orderName) {
+		this.orderName = orderName;
+	}
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+	public Integer getRows() {
+		return rows;
+	}
+	public void setRows(Integer rows) {
+		this.rows = rows;
+	}
+	public String getOrderBy() {
+		return orderBy;
+	}
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+	
+	
+}

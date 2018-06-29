@@ -1,0 +1,107 @@
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link href="/static/h-ui/css/H-ui.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/static/h-ui.admin/css/H-ui.login.css" rel="stylesheet"
+	type="text/css" />
+<link href="/static/h-ui.admin/css/style.css" rel="stylesheet"
+	type="text/css" />
+<link href="/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet"
+	type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>后台登录 - RS-ERP v1.0</title>
+</head>
+
+<body>
+	<input type="hidden" id="TenantId" name="TenantId" value="" />
+	<div class="header"></div>
+	<div class="loginWraper">
+		<div id="loginform" class="loginBox">
+			<form class="form form-horizontal" method="post">
+				<div class="row cl">
+					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+					<div class="formControls col-xs-8">
+						<input id="userName" name="userName" type="text" value="Lee" placeholder="账户"
+							class="input-text size-L">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+					<div class="formControls col-xs-8">
+						<input id="userPwd" name="userPwd" type="password" value="123" placeholder="密码"
+							class="input-text size-L">
+					</div>
+				</div>
+				<div class="row cl">
+					<div class="formControls col-xs-8 col-xs-offset-3">
+						<label for="online"> <input type="checkbox" name="online"
+							id="online" value=""> 使我保持登录状态
+						</label>
+					</div>
+				</div>
+				<div class="row cl">
+					<div class="formControls col-xs-8 col-xs-offset-3">
+						<input id="btn" type="button" class="btn btn-success radius size-L"
+							value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> <input
+							name="" type="reset" class="btn btn-default radius size-L"
+							value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="footer">Copyright 瑞顺物流 by RS-ERP v1.0</div>
+	<script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/h-ui/js/H-ui.min.js"></script>
+	<script type="text/javascript">
+	//增加键盘回车登录
+	    $(document).keydown(function(event){
+        if(event.keyCode == '13'){
+            $('#btn').click();
+        }
+    }); 
+	 //增加学生，异步提交学生表单
+    $("#btn").click(function() {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/check",//要请求的服务器url 
+            //这是一个对象，表示请求的参数，两个参数：method=ajax&val=xxx，服务器可以通过request.getParameter()来获取 
+            //data:{method:"ajaxTest",val:value},  
+            data: {
+            	userName: $("#userName").val(),
+            	userPwd: $("#userPwd").val(),
+            },
+            async: true,   //是否为异步请求
+            cache: false,  //是否缓存结果
+            type: "POST", //请求方式为POST
+            dataType: "json",   //服务器返回的数据是什么类型 
+            success: function(result){  //这个方法会在服务器执行成功是被调用 ，参数result就是服务器返回的值(现在是json类型) 
+                if(result){
+                    location.href="${pageContext.request.contextPath}/index";
+                }else{
+                	$.Huimodalalert('用户名或密码不正确',2000);
+                }
+            }
+          });
+    });
+	</script>
+</body>
+
+</html>

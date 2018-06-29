@@ -1,0 +1,84 @@
+package com.ruishun.service.impl.base;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.ruishun.common.DataGridResult;
+import com.ruishun.common.MD5Util;
+import com.ruishun.mapper.base.ErpUserMapper;
+import com.ruishun.pojo.base.ErpUser;
+import com.ruishun.pojo.base.ErpUserExample;
+import com.ruishun.service.base.ErpUserService;
+
+/**
+ * <p>Title: ErpUserServiceImpl</p>
+ * <p>Description: 用户功能业务逻辑</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2017年12月29日
+ */
+@Service
+public class ErpUserServiceImpl implements ErpUserService {
+	@Autowired
+	private ErpUserMapper erpUserMapper;
+
+	public List<ErpUser> findUser(ErpUser erpUser) {
+		if (!erpUser.getUserName().isEmpty() && !erpUser.getUserPwd().isEmpty()) {
+			// 判断用户名是否存在
+			ErpUserExample example = new ErpUserExample();
+			example.createCriteria().andUserNameEqualTo(erpUser.getUserName())
+					.andUserPwdEqualTo(MD5Util.getMD5(erpUser.getUserPwd()));
+			List<ErpUser> list = erpUserMapper.selectByExample(example);
+			if (list != null) {
+				return list;
+			}
+
+		}
+
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ruishun.service.base.ErpUserService#getUserList(int, int)
+	 */
+	@Override
+	public DataGridResult getUserList(Integer page, Integer rows) {
+		DataGridResult dataGridResult = new DataGridResult();
+		PageHelper.startPage(page, rows);
+		ErpUserExample example = new ErpUserExample();
+		example.setOrderByClause("'USER_NO'");
+		List<ErpUser> list = erpUserMapper.selectByExample(example);
+		dataGridResult.setTotal(new PageInfo<ErpUser>(list).getTotal());
+		dataGridResult.setData(list);
+		return dataGridResult;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ruishun.service.base.ErpUserService#addUser(com.ruishun.pojo.base.ErpUser)
+	 */
+	@Override
+	public Integer addUser(ErpUser erpUser) {
+		ErpUser user = erpUserMapper.selectByPrimaryKey(erpUser.getUserNo());
+		if(user != null) {
+			
+		}
+		int insert = erpUserMapper.insert(erpUser);
+		return insert;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ruishun.service.base.ErpUserService#updateUser(com.ruishun.pojo.base.ErpUser)
+	 */
+	@Override
+	public Integer updateUser(ErpUser erpUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

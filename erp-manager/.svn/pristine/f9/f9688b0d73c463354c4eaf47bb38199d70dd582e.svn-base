@@ -1,0 +1,30 @@
+package com.ruishun.mapper.base;
+
+import com.ruishun.pojo.base.ErpUser;
+import com.ruishun.pojo.base.ErpUserExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface ErpUserMapper {
+    int countByExample(ErpUserExample example);
+
+    int deleteByExample(ErpUserExample example);
+
+    int deleteByPrimaryKey(String userNo);
+
+    int insert(ErpUser record);
+
+    int insertSelective(ErpUser record);
+
+    List<ErpUser> selectByExample(ErpUserExample example);
+
+    ErpUser selectByPrimaryKey(String userNo);
+
+    int updateByExampleSelective(@Param("record") ErpUser record, @Param("example") ErpUserExample example);
+
+    int updateByExample(@Param("record") ErpUser record, @Param("example") ErpUserExample example);
+
+    int updateByPrimaryKeySelective(ErpUser record);
+
+    int updateByPrimaryKey(ErpUser record);
+}

@@ -1,0 +1,60 @@
+package com.ruishun.service.base;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import com.ruishun.pojo.base.ErpMenu;
+
+public interface ErpMenuService {
+	/**
+	 * 查询数据库获取一级菜单
+	 * 
+	 * @return 一级菜单
+	 */
+	public List<ErpMenu> getMenu1(String appId);
+
+	/**
+	 * 查询数据库获取二级菜单
+	 * 
+	 * @param menu1
+	 *            传入一级菜单id
+	 * @return 一级菜单对应的二级菜单
+	 */
+	public List<ErpMenu> getMenu2(String appId, Integer menu1);
+
+	/**
+	 * 查询数据库获取三级菜单
+	 * 
+	 * @param menu1
+	 *            传入一级菜单id
+	 * @param menu2
+	 *            传入二级菜单id
+	 * @return 对应的三级菜单
+	 */
+	public List<ErpMenu> getMenu3(String appId, Integer menu1, Integer menu2);
+
+	/**
+	 * 获取所有菜单集合
+	 * 
+	 * @return 所有菜单
+	 */
+	public LinkedHashMap<String, Object> getMenu(String appId);
+
+	/**
+	 * 
+	 * <p>
+	 * Title: getMenuFromUser
+	 * </p>
+	 * <p>
+	 * Description:
+	 * </p>
+	 * <p>
+	 * Company: ruishun
+	 * </p>
+	 * 
+	 * @author weil
+	 * @date 2018年1月2日
+	 * @return 所有菜单（对应权限控制用户）
+	 */
+	public LinkedHashMap<String, Object> getMenuFromUser(String appId, String userNo);
+}

@@ -1,0 +1,119 @@
+package com.ruishun.controller.base;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ruishun.pojo.base.ErpUser;
+import com.ruishun.service.base.ErpMenuService;
+import com.ruishun.service.base.ErpUserService;
+
+/**
+ * <p>Title: UserController</p>
+ * <p>Description: 用户功能</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2017年12月29日
+ */
+@Controller
+@RequestMapping("/base/user/")
+public class UserController {
+	@Autowired
+	private ErpUserService erpUserService;
+	@Autowired
+	private ErpMenuService erpMenuService;
+	/**
+	 * 
+	 * <p>Title: login</p>
+	 * <p>Description: 项目登陆页面</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2017年12月29日
+	 * @return
+	 */
+	@RequestMapping("login")
+	public String login() {
+		return "login";
+	}
+	
+	/**
+	 * 
+	 * <p>Title: checkLogin</p>
+	 * <p>Description: 检测登陆</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2017年12月29日
+	 * @param erpUser
+	 * @return
+	 */
+	@RequestMapping("check")
+	@ResponseBody
+	public Boolean checkLogin(ErpUser erpUser, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(erpUser.getUserName());
+		Boolean flag = false;
+		List<ErpUser> list = erpUserService.findUser(erpUser);
+		if(list != null && list.size() != 0) {
+			ErpUser user = list.get(0);
+			request.getSession().setAttribute("user", user);
+			flag = true;
+		}
+		return flag;
+	}
+	/**
+	 * 
+	 * <p>Title: index</p>
+	 * <p>Description: 主界面加载</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2017年12月29日
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("index")
+	public String index(HttpServletRequest request, HttpServletResponse response) {
+		ErpUser user = (ErpUser) request.getSession().getAttribute("user");
+		if(user == null) {
+			return "404";
+		}
+		HashMap<String, Object> menu = erpMenuService.getMenuFromUser(user.getUserNo());
+		request.getSession().setAttribute("menus", menu);
+		return "index";
+	}
+	/**
+	 * 
+	 * <p>Title: welcom</p>
+	 * <p>Description: 欢迎页面加载</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月2日
+	 * @return
+	 */
+	@RequestMapping("welcome")
+	public String welcom() {
+		return "welcome";
+	}
+	/**
+	 * 
+	 * <p>Title: logout</p>
+	 * <p>Description: 用户推出</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月3日
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login";
+	}
+}

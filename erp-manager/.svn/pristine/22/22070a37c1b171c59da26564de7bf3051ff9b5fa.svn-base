@@ -1,0 +1,76 @@
+package com.ruishun.pojo.base;
+
+import java.util.Date;
+import java.util.List;
+
+public class ErpRole extends ErpRoleKey {
+    private String roleName;
+
+    private Integer status;
+
+    private String createName;
+
+    private Date createDate;
+
+    private String updtName;
+
+    private Date updtDate;
+
+    private List<ErpUser> erpUsers;
+    
+    public List<ErpUser> getErpUsers() {
+		return erpUsers;
+	}
+
+	public void setErpUsers(List<ErpUser> erpUsers) {
+		this.erpUsers = erpUsers;
+	}
+
+	public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName == null ? null : roleName.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCreateName() {
+        return createName;
+    }
+
+    public void setCreateName(String createName) {
+        this.createName = createName == null ? null : createName.trim();
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdtName() {
+        return updtName;
+    }
+
+    public void setUpdtName(String updtName) {
+        this.updtName = updtName == null ? null : updtName.trim();
+    }
+
+    public Date getUpdtDate() {
+        return updtDate;
+    }
+
+    public void setUpdtDate(Date updtDate) {
+        this.updtDate = updtDate;
+    }
+}

@@ -1,0 +1,31 @@
+package com.ruishun.mapper.base;
+
+import com.ruishun.pojo.base.ErpRole;
+import com.ruishun.pojo.base.ErpRoleExample;
+import com.ruishun.pojo.base.ErpRoleKey;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface ErpRoleMapper {
+    int countByExample(ErpRoleExample example);
+
+    int deleteByExample(ErpRoleExample example);
+
+    int deleteByPrimaryKey(ErpRoleKey key);
+
+    int insert(ErpRole record);
+
+    int insertSelective(ErpRole record);
+
+    List<ErpRole> selectByExample(ErpRoleExample example);
+
+    ErpRole selectByPrimaryKey(ErpRoleKey key);
+
+    int updateByExampleSelective(@Param("record") ErpRole record, @Param("example") ErpRoleExample example);
+
+    int updateByExample(@Param("record") ErpRole record, @Param("example") ErpRoleExample example);
+
+    int updateByPrimaryKeySelective(ErpRole record);
+
+    int updateByPrimaryKey(ErpRole record);
+}

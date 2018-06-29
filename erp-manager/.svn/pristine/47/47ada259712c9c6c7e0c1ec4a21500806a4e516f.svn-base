@@ -1,0 +1,63 @@
+package com.ruishun.service.base;
+
+import java.util.List;
+
+import com.ruishun.common.DataGridResult;
+import com.ruishun.pojo.base.ErpUser;
+import com.ruishun.pojo.base.ErpUserQuery;
+
+/**
+ * <p>Title: ErpUserService</p>
+ * <p>Description: 用户功能接口</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2017年12月28日
+ */
+public interface ErpUserService {
+	/**
+	 * 
+	 * <p>Title: findUser</p>
+	 * <p>Description: 根据用户条件查找用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2017年12月28日
+	 * @param erpUserExample
+	 * @return 用户对象集合（不存在则返回null）
+	 */
+	public List<ErpUser> findUser(ErpUser erpUser);
+
+	/**
+	 * 
+	 * <p>Title: getUserList</p>
+	 * <p>Description: 分页查询表格结果集</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月5日
+	 * @param query
+	 * @return 表格结果集
+	 */
+	public DataGridResult getUserList(ErpUserQuery query);
+
+	/**
+	 * 
+	 * <p>Title: addUser</p>
+	 * <p>Description: 添加用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月6日
+	 * @param erpUser
+	 * @return
+	 */
+	public String addUser(ErpUser erpUser);
+	/**
+	 * 
+	 * <p>Title: updateUser</p>
+	 * <p>Description: 更新用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2018年1月6日
+	 * @param erpUser
+	 * @return
+	 */
+	public String updateUser(ErpUser erpUser);
+}

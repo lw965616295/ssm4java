@@ -1,0 +1,26 @@
+package com.ruishun.service.base;
+
+import java.util.List;
+
+import com.ruishun.pojo.base.ErpUser;
+
+/**
+ * <p>Title: ErpUserService</p>
+ * <p>Description: 用户功能接口</p>
+ * <p>Company: ruishun</p>
+ * @author weil
+ * @date 2017年12月28日
+ */
+public interface ErpUserService {
+	/**
+	 * 
+	 * <p>Title: findUser</p>
+	 * <p>Description: 根据用户条件查找用户</p>
+	 * <p>Company: ruishun</p>
+	 * @author weil
+	 * @date 2017年12月28日
+	 * @param erpUserExample
+	 * @return 用户对象集合（不存在则返回null）
+	 */
+	public List<ErpUser> findUser(ErpUser erpUser);
+}

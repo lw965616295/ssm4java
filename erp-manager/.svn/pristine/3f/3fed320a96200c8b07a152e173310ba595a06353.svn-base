@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruishun.mapper.base.ErpUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ruishun.pojo.base.ErpUser" >
+    <id column="USER_NO" property="userNo" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_PWD" property="userPwd" jdbcType="VARCHAR" />
+    <result column="WORKER_RFID" property="workerRfid" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="DECIMAL" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="COLNAME01" property="colname01" jdbcType="VARCHAR" />
+    <result column="COLNAME02" property="colname02" jdbcType="VARCHAR" />
+    <result column="COLNAME03" property="colname03" jdbcType="VARCHAR" />
+    <result column="CREATE_NAME" property="createName" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDT_NAME" property="updtName" jdbcType="VARCHAR" />
+    <result column="UPDT_DATE" property="updtDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_NO, USER_NAME, USER_PWD, WORKER_RFID, SEX, TEL, ADDRESS, STATUS, MEMO, COLNAME01, 
+    COLNAME02, COLNAME03, CREATE_NAME, CREATE_DATE, UPDT_NAME, UPDT_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ruishun.pojo.base.ErpUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ERP_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ERP_USER
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ERP_USER
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ruishun.pojo.base.ErpUserExample" >
+    delete from ERP_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ruishun.pojo.base.ErpUser" >
+    insert into ERP_USER (USER_NO, USER_NAME, USER_PWD, 
+      WORKER_RFID, SEX, TEL, 
+      ADDRESS, STATUS, MEMO, 
+      COLNAME01, COLNAME02, COLNAME03, 
+      CREATE_NAME, CREATE_DATE, UPDT_NAME, 
+      UPDT_DATE)
+    values (#{userNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{workerRfid,jdbcType=VARCHAR}, #{sex,jdbcType=DECIMAL}, #{tel,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, #{memo,jdbcType=VARCHAR}, 
+      #{colname01,jdbcType=VARCHAR}, #{colname02,jdbcType=VARCHAR}, #{colname03,jdbcType=VARCHAR}, 
+      #{createName,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{updtName,jdbcType=VARCHAR}, 
+      #{updtDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ruishun.pojo.base.ErpUser" >
+    insert into ERP_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userNo != null" >
+        USER_NO,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userPwd != null" >
+        USER_PWD,
+      </if>
+      <if test="workerRfid != null" >
+        WORKER_RFID,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="colname01 != null" >
+        COLNAME01,
+      </if>
+      <if test="colname02 != null" >
+        COLNAME02,
+      </if>
+      <if test="colname03 != null" >
+        COLNAME03,
+      </if>
+      <if test="createName != null" >
+        CREATE_NAME,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updtName != null" >
+        UPDT_NAME,
+      </if>
+      <if test="updtDate != null" >
+        UPDT_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userNo != null" >
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="workerRfid != null" >
+        #{workerRfid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="colname01 != null" >
+        #{colname01,jdbcType=VARCHAR},
+      </if>
+      <if test="colname02 != null" >
+        #{colname02,jdbcType=VARCHAR},
+      </if>
+      <if test="colname03 != null" >
+        #{colname03,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updtName != null" >
+        #{updtName,jdbcType=VARCHAR},
+      </if>
+      <if test="updtDate != null" >
+        #{updtDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ruishun.pojo.base.ErpUserExample" resultType="java.lang.Integer" >
+    select count(*) from ERP_USER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERP_USER
+    <set >
+      <if test="record.userNo != null" >
+        USER_NO = #{record.userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPwd != null" >
+        USER_PWD = #{record.userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workerRfid != null" >
+        WORKER_RFID = #{record.workerRfid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        SEX = #{record.sex,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tel != null" >
+        TEL = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memo != null" >
+        MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname01 != null" >
+        COLNAME01 = #{record.colname01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname02 != null" >
+        COLNAME02 = #{record.colname02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colname03 != null" >
+        COLNAME03 = #{record.colname03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createName != null" >
+        CREATE_NAME = #{record.createName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.updtName != null" >
+        UPDT_NAME = #{record.updtName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updtDate != null" >
+        UPDT_DATE = #{record.updtDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ERP_USER
+    set USER_NO = #{record.userNo,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      USER_PWD = #{record.userPwd,jdbcType=VARCHAR},
+      WORKER_RFID = #{record.workerRfid,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=DECIMAL},
+      TEL = #{record.tel,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=DECIMAL},
+      MEMO = #{record.memo,jdbcType=VARCHAR},
+      COLNAME01 = #{record.colname01,jdbcType=VARCHAR},
+      COLNAME02 = #{record.colname02,jdbcType=VARCHAR},
+      COLNAME03 = #{record.colname03,jdbcType=VARCHAR},
+      CREATE_NAME = #{record.createName,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=DATE},
+      UPDT_NAME = #{record.updtName,jdbcType=VARCHAR},
+      UPDT_DATE = #{record.updtDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruishun.pojo.base.ErpUser" >
+    update ERP_USER
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="workerRfid != null" >
+        WORKER_RFID = #{workerRfid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="colname01 != null" >
+        COLNAME01 = #{colname01,jdbcType=VARCHAR},
+      </if>
+      <if test="colname02 != null" >
+        COLNAME02 = #{colname02,jdbcType=VARCHAR},
+      </if>
+      <if test="colname03 != null" >
+        COLNAME03 = #{colname03,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        CREATE_NAME = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updtName != null" >
+        UPDT_NAME = #{updtName,jdbcType=VARCHAR},
+      </if>
+      <if test="updtDate != null" >
+        UPDT_DATE = #{updtDate,jdbcType=DATE},
+      </if>
+    </set>
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ruishun.pojo.base.ErpUser" >
+    update ERP_USER
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      WORKER_RFID = #{workerRfid,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=DECIMAL},
+      TEL = #{tel,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      COLNAME01 = #{colname01,jdbcType=VARCHAR},
+      COLNAME02 = #{colname02,jdbcType=VARCHAR},
+      COLNAME03 = #{colname03,jdbcType=VARCHAR},
+      CREATE_NAME = #{createName,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      UPDT_NAME = #{updtName,jdbcType=VARCHAR},
+      UPDT_DATE = #{updtDate,jdbcType=DATE}
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
